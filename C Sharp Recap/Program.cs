@@ -118,7 +118,7 @@ namespace C_Sharp_Recap
 
         static void Task7()
         {
-            var rand = new Random().Next(100) + 1;
+            var rand = new Random().Next(1, 101);
             string input;
             int guess = 0;
 
@@ -224,28 +224,80 @@ namespace Hangman
         int m_Lives = 6;
         List<char> m_IncorrectLetters;
         List<char> m_CorrectLetters;
-        string[] m_Words = { };
+        string[] m_Words = { "distinguished", "invigorating", "steward", "apostle", "dragon",
+            "pontiff", "serpent", "gargoyle", "golem", "knight", "drake", "wyvern", "hollow", "lordran",
+            "lothric", "drangleic", "irithyll", "farron", "firelink", "blighttown", "faraam", "caelid", 
+            "gelmir", "limgrave"};
         string m_Word;
         bool m_Won = false;
         char m_PlayAgain = 'n';
 
         public Hangman()
         {
-            //init
+            // Init
+            Console.Clear();
+            m_Lives = 6;
+            m_IncorrectLetters = new List<char>();
+            m_CorrectLetters = new List<char>();
+            m_Word = m_Words[new Random().Next(0, m_Words.Length)];
         }
 
         public void Update()
         {
-            char userInput;
-
-            //Check to see if the user has used a value 
-            while (m_IncorrectLetters.Contains((userInput = Char.ToLower(Console.ReadKey().KeyChar))))
+            do
             {
-                Console.WriteLine(": has already been guessed");
-            }
+                Console.Clear();
+                m_Lives = 6;
+                m_IncorrectLetters = new List<char>();
+                m_CorrectLetters = new List<char>();
+                m_Word = m_Words[new Random().Next(0, m_Words.Length)];
 
-            //Clear the screen
-            Console.Clear();
+                ShowHangman();
+
+                ShowWord();
+
+                while (!m_Won && m_Lives > 0)
+                {
+                    char userInput;
+
+                    //Check to see if the user has used a value 
+                    while (m_IncorrectLetters.Contains((userInput = Char.ToLower(Console.ReadKey().KeyChar))))
+                    {
+                        Console.WriteLine(": has already been guessed");
+                    }
+
+                    bool correct = false;
+                    for (int i = 0; i < m_Word.Length; ++i)
+                    {
+                        if (Char.ToLower(m_Word[i]) == userInput)
+                        {
+                            correct = true;
+                            m_CorrectLetters.Add(userInput);
+                            break;
+                        }
+                    }
+
+                    if (!correct)
+                    {
+                        m_Lives--;
+                        m_IncorrectLetters.Add(userInput);
+                    }
+
+                    Console.Clear();
+                    ShowHangman();
+                    ShowWord();
+                    ShowWrongAnswers();
+                }
+
+                Console.WriteLine(m_Won ? "You win!" : "You lose the correct answer was - " + m_Word);
+                Console.WriteLine("Play again? y/n");
+
+                while ((m_PlayAgain = Char.ToLower(Console.ReadKey().KeyChar)) != 'n' && (m_PlayAgain != 'y'))
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Play again? y/n");
+                }
+            } while (m_PlayAgain == 'y');
         }
 
         //Draw Hangman
@@ -258,6 +310,38 @@ namespace Hangman
             Console.WriteLine("     |     " + (m_Lives < 2 ? "/" : "") + " " + (m_Lives < 1 ? @"\" : ""));
             Console.WriteLine("     |         ");
             Console.WriteLine("===============");
+        }
+
+        void ShowWord()
+        {
+            m_Won = true;
+
+            foreach (char letter in m_Word)
+            {
+                if (m_CorrectLetters.Contains(char.ToLower(letter)))
+                {
+                    Console.Write(char.ToLower(letter));
+                }
+                else
+                {
+                    Console.Write("_");
+                    m_Won = false;
+                }
+            }
+
+            Console.WriteLine();
+        }
+
+        void ShowWrongAnswers()
+        {
+            Console.Write("Wrong Answers: ");
+
+            for (int i = 0; i < m_IncorrectLetters.Count; ++i)
+            {
+                Console.Write(m_IncorrectLetters[i] + " ");
+            }
+
+            Console.WriteLine();
         }
     }
 }
