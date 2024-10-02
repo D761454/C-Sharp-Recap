@@ -117,6 +117,28 @@ namespace C_Sharp_Recap
         static void Task7()
         {
             var rand = new Random().Next(100) + 1;
+            string input;
+            int guess = 0;
+
+            Console.WriteLine("Guess what number i'm thinking from 1 to 100:");
+
+            do
+            {
+                input = Console.ReadLine();
+                while (!int.TryParse(input, out guess))
+                {
+                    Console.WriteLine($"unable to parse '{input}' to int.");
+                }
+                if (guess > rand)
+                {
+                    Console.WriteLine("Too High");
+                }
+                else if (guess < rand)
+                {
+                    Console.WriteLine("Too Low");
+                }
+            } while (guess != rand);
+            Console.WriteLine("Correct");
         }
     }
 }
