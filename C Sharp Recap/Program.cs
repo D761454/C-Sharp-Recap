@@ -66,35 +66,39 @@
                 Console.WriteLine(numArray[i-1]);
             }
 
-            Console.WriteLine("Result: " + Add());
-        }
-
-        // 5
-        static int Add()
-        {
-            string line;
+            // 5 & 6
             int a = 0, b = 0;
 
             Console.WriteLine("Number 1: ");
-            line = Console.ReadLine();
+            input = Console.ReadLine();
 
-            while (!int.TryParse(line, out a))
+            while (!int.TryParse(input, out a))
             {
-                Console.WriteLine($"unable to parse '{line}'.");
-                line = Console.ReadLine();
+                Console.WriteLine($"unable to parse '{input}' to int.");
+                input = Console.ReadLine();
             }
 
             Console.WriteLine("Number 2: ");
-            line = Console.ReadLine();
+            input = Console.ReadLine();
 
-            while (!int.TryParse(line, out b))
+            while (!int.TryParse(input, out b))
             {
-                Console.WriteLine($"unable to parse '{line}'.");
-                line = Console.ReadLine();
+                Console.WriteLine($"unable to parse '{input}' to int.");
+                input = Console.ReadLine();
             }
 
+            Console.WriteLine("Result: " + Add(a, b));
+        }
 
+        // 5
+        static int Add(int a, int b)
+        {
             return a + b; 
+        }
+
+        static float Add(float a, float b) 
+        {
+            return a + b;
         }
     }
 }
