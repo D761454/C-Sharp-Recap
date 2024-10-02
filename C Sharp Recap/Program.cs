@@ -9,7 +9,7 @@ namespace C_Sharp_Recap
             // 1
             Console.WriteLine("Hello, World!");
 
-            Task7();
+            Task8();
         }
 
         static void Task2()
@@ -23,7 +23,7 @@ namespace C_Sharp_Recap
             // if unable to parse - loop entering and trying to parse new input
             while (!float.TryParse(input, out width))
             {
-                Console.WriteLine($"unable to parse '{input}'.");
+                Console.WriteLine($"unable to parse '{input}' to float.");
                 input = Console.ReadLine();
             }
 
@@ -32,7 +32,7 @@ namespace C_Sharp_Recap
             // if unable to parse - loop entering and trying to parse new input
             while (!float.TryParse(input, out height))
             {
-                Console.WriteLine($"unable to parse '{input}'.");
+                Console.WriteLine($"unable to parse '{input}' to float.");
                 input = Console.ReadLine();
             }
 
@@ -56,7 +56,7 @@ namespace C_Sharp_Recap
                 tempString = Console.ReadLine();
                 while (!int.TryParse(tempString, out temp))
                 {
-                    Console.WriteLine($"unable to parse '{tempString}'.");
+                    Console.WriteLine($"unable to parse '{tempString}'  to int.");
                     tempString = Console.ReadLine();
                 }
                 numArray[i] = temp;
@@ -140,5 +140,74 @@ namespace C_Sharp_Recap
             } while (guess != rand);
             Console.WriteLine("Correct");
         }
+
+        static void Task8()
+        {
+            Animal[] animalsArray = new Animal[]
+            {
+                new Dog(), new Cat(), new Horse()
+            };
+            int temp;
+            string tempString;
+
+            for (int i = 0; i < animalsArray.Length; i++)
+            {
+                Console.WriteLine(i + 1 + ". " + animalsArray[i].name);
+            }
+            tempString = Console.ReadLine();
+            while (!int.TryParse(tempString, out temp))
+            {
+                Console.WriteLine($"unable to parse '{tempString}' to int.");
+                tempString = Console.ReadLine();
+            }
+            animalsArray[temp].Speak();
+        } 
     }
 }
+
+    internal class Animal
+    {
+        public string name = "Base";
+
+        public virtual void Speak()
+        {
+            Console.WriteLine("Performing base class speak.");
+        }
+    }
+
+    internal class Dog : Animal
+    {
+    public Dog()
+    {
+        name = "Dog";
+    }
+
+        public override void Speak()
+        {
+            Console.WriteLine("Woof.");
+        }
+    }
+
+    internal class Cat : Animal
+    {
+    public Cat()
+    {
+        name = "Cat";
+    }
+    public override void Speak()
+        {
+            Console.WriteLine("Meow.");
+        }
+    }
+
+    internal class Horse : Animal
+    {
+    public Horse()
+    {
+        name = "Horse";
+    }
+    public override void Speak()
+        {
+            Console.WriteLine("Neigh.");
+        }
+    }
