@@ -150,6 +150,7 @@ namespace C_Sharp_Recap
             int temp;
             string tempString;
 
+            Console.WriteLine("Select an Animal.");
             for (int i = 0; i < animalsArray.Length; i++)
             {
                 Console.WriteLine(i + 1 + ". " + animalsArray[i].name);
@@ -160,7 +161,7 @@ namespace C_Sharp_Recap
                 Console.WriteLine($"unable to parse '{tempString}' to int.");
                 tempString = Console.ReadLine();
             }
-            animalsArray[temp].Speak();
+            animalsArray[temp-1].Speak();
         } 
     }
 }
