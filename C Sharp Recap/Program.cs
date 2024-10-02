@@ -1,4 +1,6 @@
-﻿namespace C_Sharp_Recap
+﻿using System;
+
+namespace C_Sharp_Recap
 {
     internal class Program
     {
@@ -7,14 +9,10 @@
             // 1
             Console.WriteLine("Hello, World!");
 
-            
-
-            
-
-            
+            Task7();
         }
 
-        void Task2()
+        static void Task2()
         {
             // 2
             string input;
@@ -44,7 +42,7 @@
             Console.WriteLine("Area: " + area + "; Perimeter: " + perimeter);
         }
 
-        void Task3()
+        static void Task3()
         {
             // 3 & 4
             Console.WriteLine("Enter 10 integers");
@@ -79,7 +77,7 @@
             }
         }
 
-        void Task5()
+        static void Task5()
         {
             string input;
             // 5 & 6
@@ -114,6 +112,11 @@
         static float Add(float a, float b) 
         {
             return a + b;
+        }
+
+        static void Task7()
+        {
+            var rand = new Random();
         }
     }
 }
