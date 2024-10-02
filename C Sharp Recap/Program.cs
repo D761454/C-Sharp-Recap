@@ -116,7 +116,7 @@ namespace C_Sharp_Recap
 
         static void Task7()
         {
-            var rand = new Random();
+            var rand = new Random().Next(100) + 1;
         }
     }
 }
