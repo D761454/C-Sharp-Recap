@@ -7,6 +7,15 @@
             // 1
             Console.WriteLine("Hello, World!");
 
+            
+
+            
+
+            
+        }
+
+        void Task2()
+        {
             // 2
             string input;
             float width = 0, height = 0;
@@ -33,7 +42,10 @@
             float perimeter = (2 * width) + (2 * height);
 
             Console.WriteLine("Area: " + area + "; Perimeter: " + perimeter);
+        }
 
+        void Task3()
+        {
             // 3 & 4
             Console.WriteLine("Enter 10 integers");
             int[] numArray = new int[10];
@@ -63,9 +75,13 @@
 
             for (int i = numArray.Length; i > 0; i--)
             {
-                Console.WriteLine(numArray[i-1]);
+                Console.WriteLine(numArray[i - 1]);
             }
+        }
 
+        void Task5()
+        {
+            string input;
             // 5 & 6
             int a = 0, b = 0;
 
@@ -90,7 +106,6 @@
             Console.WriteLine("Result: " + Add(a, b));
         }
 
-        // 5
         static int Add(int a, int b)
         {
             return a + b; 
